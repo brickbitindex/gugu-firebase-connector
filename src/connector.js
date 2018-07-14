@@ -16,8 +16,16 @@ export default class Connector {
   setData(key, data) {
     return this.db.doc(key).set(data);
   }
+  updateData(key, data) {
+    return this.db.doc(key).update(data);
+  }
   getData(key) {
-    console.log(key);
+    return this.db.doc(key).get().then((doc) => {
+      if (doc.exists) {
+        return doc.data();
+      }
+      return undefined;
+    });
   }
   onDataChange(key, callback) {
     this.db.doc(key).onSnapshot((doc) => {
