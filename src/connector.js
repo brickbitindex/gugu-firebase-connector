@@ -13,8 +13,13 @@ export default class Connector {
     });
   }
 
-  setData(key, data) {
-    return this.db.doc(key).set(data);
+  shouldXHRupdate(url) {
+    // 若是firebase的api的请求，则隐藏
+    return url.indexOf('firestore.googleapis.com') === -1;
+  }
+
+  setData(key, data, option) {
+    return this.db.doc(key).set(data, option);
   }
   updateData(key, data) {
     return this.db.doc(key).update(data);
