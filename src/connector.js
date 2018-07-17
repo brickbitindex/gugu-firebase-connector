@@ -1,7 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-
 import config from './config.json';
+
+const firebaseUrl = 'firestore.googleapis.com';
 
 export default class Connector {
   constructor() {
@@ -13,9 +14,12 @@ export default class Connector {
     });
   }
 
-  shouldXHRupdate(url) {
+  shouldXHRUpdate(url) {
     // 若是firebase的api的请求，则隐藏
-    return url.indexOf('firestore.googleapis.com') === -1;
+    return url.indexOf(firebaseUrl) === -1;
+  }
+  shouldResourceUpdate(entry) {
+    return entry.name.indexOf(firebaseUrl) === -1;
   }
 
   setData(key, data, option) {
