@@ -1,6 +1,8 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import config from './config.json';
+import handleSetData from './handleSetData';
+import handleGetData from './handleGetData';
 
 const firebaseUrl = 'firestore.googleapis.com';
 
@@ -23,7 +25,7 @@ export default class Connector {
   }
 
   setData(key, data, option) {
-    return this.db.doc(key).set(data, option);
+    return this.db.doc(key).set(handleSetData(key, data), option);
   }
   updateData(key, data) {
     return this.db.doc(key).update(data);
@@ -31,7 +33,7 @@ export default class Connector {
   getData(key) {
     return this.db.doc(key).get().then((doc) => {
       if (doc.exists) {
-        return doc.data();
+        return handleGetData(key, doc.data());
       }
       return undefined;
     });
