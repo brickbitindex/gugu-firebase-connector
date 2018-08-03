@@ -1,10 +1,9 @@
 const handler = {
-  element(originData) {
-    const data = {
-      ...originData,
+  element(data) {
+    return {
+      ...data,
+      info: JSON.parse(data.info),
     };
-    data.info = JSON.parse(originData.info);
-    return data;
   },
 };
 
