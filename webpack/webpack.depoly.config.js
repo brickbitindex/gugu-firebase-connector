@@ -9,12 +9,11 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 var config = {
   context: path.join(__dirname, '..', '/'),
   entry: {
-    gugu: './lib/index',
-    remote: './pages/remote/index',
+    'gugu-firebase-connector': './src/index',
   },
   output: {
     path: path.join(__dirname, '..', '/dist'),
-    filename: '[name].js',
+    filename: '[name].min.js',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -35,23 +34,6 @@ var config = {
     // new CommonsChunkPlugin('vendors', 'vendors.[hash].js', Infinity),
     new ExtractTextPlugin("[name].[hash].css"),
     new webpack.optimize.DedupePlugin(),
-    new HtmlWebpackPlugin({
-      template: './pages/remote/template.html',
-      filename: 'index.html',
-      chunks: ['remote', 'vendors'],
-      inject: 'body',
-      hash: true
-    }),
-    new HtmlWebpackPlugin({
-      template: './pages/test/template.deploy.html',
-      filename: 'test.html',
-      chunks: [],
-      inject: 'body',
-      hash: true,
-    }),
-    new CopyWebpackPlugin([
-      { from: './pages/snippet', to: 'snippet' },
-    ]),
   ],
   module: {
     loaders: [

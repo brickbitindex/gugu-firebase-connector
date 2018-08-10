@@ -38,16 +38,19 @@ export default class Connector {
       return undefined;
     });
   }
+  deleteData(key) {
+    return this.db.doc(key).delete();
+  }
   onDataChange(key, callback) {
     this.db.doc(key).onSnapshot((doc) => {
       const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server';
-      callback(doc.data(), source);
+      callback(handleGetData(key, doc.data()), source);
     });
   }
   onceDataChange(key, callback) {
     const unsubscribe = this.db.doc(key).onSnapshot((doc) => {
       const source = doc.metadata.hasPendingWrites ? 'Local' : 'Server';
-      callback(doc.data(), source);
+      callback(handleGetData(key, doc.data()), source);
       unsubscribe();
     });
   }

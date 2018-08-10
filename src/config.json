@@ -1,8 +1,8 @@
 {
-  "apiKey": "AIzaSyDnNXvRJOWOB31IjpxhoG03pYfW7Ah2duA",
-  "authDomain": "gugu-test-6ab17.firebaseapp.com",
-  "databaseURL": "https://gugu-test-6ab17.firebaseio.com",
-  "projectId": "gugu-test-6ab17",
-  "storageBucket": "gugu-test-6ab17.appspot.com",
-  "messagingSenderId": "149191290214"
+  "apiKey": "AIzaSyC9Ir5oUbPhAuPPWS4qZ3IPJaZf0Kmldrg",
+  "authDomain": "gugu-firebase.firebaseapp.com",
+  "databaseURL": "https://gugu-firebase.firebaseio.com",
+  "projectId": "gugu-firebase",
+  "storageBucket": "gugu-firebase.appspot.com",
+  "messagingSenderId": "292703558228"
 }
